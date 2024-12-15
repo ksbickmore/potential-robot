@@ -1,7 +1,8 @@
-
-SET(BUILD_SHARED_LIBS ON)
-
-add_library(potential-robot "")
+if(BUILD_SHARED_LIBS)
+    add_library(potential-robot SHARED "")
+else()
+    add_library(potential-robot STATIC "")
+endif()
 
 target_sources(potential-robot
     PRIVATE
@@ -13,19 +14,7 @@ target_include_directories(potential-robot
     .
     ${PROJECT_SOURCE_DIR}/include
 )
-
-add_library(potential-robotStatic STATIC "")
-target_sources(potential-robotStatic
-    PRIVATE
-    robot.c
-    robot-helper.c
-)
-target_include_directories(potential-robotStatic
-    PUBLIC
-    .
-    ${PROJECT_SOURCE_DIR}/include
-)
-set_target_properties(potential-robotStatic PROPERTIES OUTPUT_NAME potential-robot)
+# set_target_properties(potential-robotStatic PROPERTIES OUTPUT_NAME potential-robot)
 
 # add_library(potential-robot-objs OBJECT "")
 
